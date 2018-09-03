@@ -12,7 +12,7 @@ def convert(s):
         print("Conversion error: {}"\
               .format(str(e)),
               file=sys.stderr)
-        return -1
+        raise
 
 def string_log(s):
     v = convert(s)
