@@ -1,12 +1,19 @@
 """
 A module for demonistration exceptions.
 """
+import sys
+from math import log
+
 def convert(s):
     '''Convert to an integer.'''
-    x = -1
     try:
-        x = int(s)
-        print("Conversion succeeded! x=", x)
-    except (ValueError, TypeError):
-        print("Conversion failed!")
-    return x
+        return int(s)
+    except (ValueError, TypeError) as e:
+        print("Conversion error: {}"\
+              .format(str(e)),
+              file=sys.stderr)
+        return -1
+
+def string_log(s):
+    v = convert(s)
+    return log(v)
