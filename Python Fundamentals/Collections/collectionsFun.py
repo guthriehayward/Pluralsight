@@ -20,7 +20,7 @@ d = dict(names_and_ages)
 d        #Should output {'Alice': 32, 'Charlie': 28, 'Bob': 48, 'Daniel': 33}
 
 #Another quick way to create a dict
-phonetic = dict(a='alfa', b='baravo', c='charlie', d='delta', e='echo', f='foxtrot')
+phonetic = dict(a='alfa', b='bravo', c='charlie', d='delta', e='echo', f='foxtrot')
 phonetic   #Should output the above in dict form.
 
 #Two ways to copy a dict
