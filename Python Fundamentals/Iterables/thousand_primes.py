@@ -15,7 +15,7 @@ from prime import is_prime
 thousand_primes = (islice((x for x in count() if is_prime(x)), 1000)
 
 #Puts them into a list
-print(list(thousand_primes))
+list(thousand_primes)
 
 #Calculates the sum
 sum(islice((x for x in count() if is_prime(x)), 1000))
