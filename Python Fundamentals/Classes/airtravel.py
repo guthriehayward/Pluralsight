@@ -108,13 +108,22 @@ class Flight:
                 if passenger is not None:
                     yield (passenger, "{}{}".format(row, letter))
 
-class AirbusA319:
-
+class Aircraft:
+    """ Base class to be referenced by specific
+        aircraft models, reducing duplicate code.
+        Inheritance!
+    """
     def __init__(self, registration):
         self._registration = registration
 
     def registration(self):
         return self._registration
+
+    def num_seats(self):
+        rows, row_seats = self.seating_plan()
+        return len(rows) * len(row_seats)
+
+class AirbusA319(Aircraft):
 
     def model(self):
         return "Airbus A319"
@@ -122,13 +131,8 @@ class AirbusA319:
     def seating_plan(self):
         return range(1, 23), "ABCDEF"
 
-class Boeing777:
 
-    def __init__(self, registration):
-        self._registration = registration
-
-    def registration(self):
-        return self._registration
+class Boeing777(Aircraft):
 
     def model(self):
         return "Boeing 777"
@@ -137,6 +141,7 @@ class Boeing777:
         # For simplicity's sake, we ignore complex
         # seating arrangement for first-class
         return range(1, 56), "ABCDEGHJK"
+
 
 def make_flights():
     f = Flight("BA758", AirbusA319("G-EUPT"))
