@@ -50,11 +50,11 @@ def write_grayscale(filename, pixels):
         for row in reversed(pixels):
             row_data = bytes(row)
             bmp.write(row_data)
-            padding = b'\x00' * (4 - (len(row) %4))
+            padding = b'\x00' * (4 - (len(row) % 4))
             bmp.write(padding)
 
         #End of file
-        eof_bookmark = bmp.tell
+        eof_bookmark = bmp.tell()
 
         #Fill in file size placeholder
         bmp.seek(size_bookmark)
@@ -63,3 +63,10 @@ def write_grayscale(filename, pixels):
         #Fill in pixel offset placeholder
         bmp.seek(pixel_offset_bookmark)
         bmp.write(_int32_to_bytes(pixel_data_bookmark))
+
+def _int32_to_bytes(i):
+    """Convert an integer to four bytes in little-endian format."""
+    return bytes((i & 0xff,
+                  i >> 8 & 0xff,
+                  i >> 16 & 0xff,
+                  i >> 24 & 0xff))
